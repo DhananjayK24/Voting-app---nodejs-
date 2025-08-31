@@ -7,10 +7,12 @@ const {jwtMiddleware, generateToken} = require("../middlewares/jwt");
 
 const router = express.Router();
 
-router.post('/signup', userSignupHandler);
+router.route('/signup').post(userSignupHandler);
 
-router.post('/login', userLoginHandler);
+router.route('/login').post(userLoginHandler);
 
-router.get('/profile', jwtMiddleware, userProfileHandler);
+router.route('/profile').get(jwtMiddleware, userProfileHandler);
 
-router.put('/profile/password', jwtMiddleware, userPasswordHandler);
+router.route('/profile/password').put(jwtMiddleware, userPasswordHandler);
+
+module.exports = router;

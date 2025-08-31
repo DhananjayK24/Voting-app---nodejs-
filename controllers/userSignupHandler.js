@@ -14,7 +14,7 @@ const userSignupHandler = asyncHandler(async (req, res) => {
         id: response.id,
     };
 
-    const token = generateToken(payload);
+    const token = await generateToken(payload);
     console.log("Token is: ", token);
 
     res.status(200).json({response: response, token: token});

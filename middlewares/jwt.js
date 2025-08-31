@@ -23,7 +23,7 @@ const jwtMiddleware = asyncHandler(async (req, res, next) => {
 });
 
 const generateToken = asyncHandler(async (userData) => {
-    jwt.sign(userData, process.env.JWT_SECRET_KEY, {expiresIn: "1m"})
+    return jwt.sign(userData, process.env.JWT_SECRET_KEY, {expiresIn: "1m"})
 });
 
 module.exports = {jwtMiddleware, generateToken};

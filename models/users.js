@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
+const asyncHandler = require('express-async-handler');
 
-const userSchema = new mongoose.schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -37,6 +39,11 @@ const userSchema = new mongoose.schema({
     type: Boolean,
     default: false,
   },
+});
+
+userSchema.methods.comparePassword = asyncHandler(async (password) => {
+    const isMatch = await bcrypt.compare(password, this.password);
+    return isMatch;
 });
 
 const User = mongoose.model('User', userSchema);
